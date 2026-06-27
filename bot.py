@@ -94,13 +94,18 @@ class ReviewView(discord.ui.View):
         try:
             channel_name = self.room_name.replace(" ", "-") if self.room_name else "روم-جديد"
             category = guild.get_channel(CATEGORY_ID)
+            private_role = guild.get_role(1515958292969689098)
             overwrites = {
-                guild.default_role: discord.PermissionOverwrite(view_channel=True, send_messages=False),
+                guild.default_role: discord.PermissionOverwrite(view_channel=False),
                 guild.me: discord.PermissionOverwrite(
                     view_channel=True, send_messages=True,
                     embed_links=True, attach_files=True, read_message_history=True
                 )
             }
+            if private_role:
+                overwrites[private_role] = discord.PermissionOverwrite(
+                    view_channel=True, send_messages=False, read_message_history=True
+                )
             new_channel = await guild.create_text_channel(
                 name=channel_name, category=category,
                 overwrites=overwrites, reason="طلب مقبول"
