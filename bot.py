@@ -42,7 +42,7 @@ def add_watermark(img_bytes: bytes) -> bytes:
         draw = ImageDraw.Draw(img)
 
         text = "© Depth Of School"
-        font_size = max(80, img.width // 4)
+        font_size = max(100, img.width // 3)
 
         try:
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", font_size)
@@ -56,16 +56,17 @@ def add_watermark(img_bytes: bytes) -> bytes:
         text_w = bbox[2] - bbox[0]
         text_h = bbox[3] - bbox[1]
 
-        # ثلاث مواقع موزعة في وسط الصورة
+        margin = 10
+        # يسار - وسط - يمين على ثلاث مستويات عمودية
         positions = [
-            (img.width // 2 - text_w // 2, img.height // 4 - text_h // 2),
+            (margin, img.height // 4 - text_h // 2),
             (img.width // 2 - text_w // 2, img.height // 2 - text_h // 2),
-            (img.width // 2 - text_w // 2, img.height * 3 // 4 - text_h // 2),
+            (img.width - text_w - margin, img.height * 3 // 4 - text_h // 2),
         ]
 
         for (x, y) in positions:
             draw.text((x + 2, y + 2), text, font=font, fill=(0, 0, 0, 160))
-            draw.text((x, y), text, font=font, fill=(255, 255, 255, 200))
+            draw.text((x, y), text, font=font, fill=(255, 255, 255, 210))
 
         output = io.BytesIO()
         img = img.convert("RGB")
