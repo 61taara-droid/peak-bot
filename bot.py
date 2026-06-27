@@ -42,7 +42,7 @@ def add_watermark(img_bytes: bytes) -> bytes:
         draw = ImageDraw.Draw(img)
 
         text = "© Depth Of School"
-        font_size = max(50, img.width // 6)
+        font_size = max(80, img.width // 4)
 
         try:
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", font_size)
