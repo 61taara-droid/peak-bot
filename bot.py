@@ -8,10 +8,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 TOKEN = os.environ.get("DISCORD_TOKEN")
 
-REQUEST_CHANNEL_ID = 1519177432635015219
-LOG_CHANNEL_ID = 1518369567250845696
-REVIEW_CHANNEL_ID = 1519185075965661255
-CATEGORY_ID = 1519109517684637706
+REQUEST_CHANNEL_ID = 1520402264441884672
+LOG_CHANNEL_ID = 1520405217210929162
+REVIEW_CHANNEL_ID = 1520402893126111473
+CATEGORY_ID = 1508218078058774555
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -41,7 +41,7 @@ def add_watermark(img_bytes: bytes) -> bytes:
         img = Image.open(io.BytesIO(img_bytes)).convert("RGBA")
         draw = ImageDraw.Draw(img)
 
-        text = "© PEAK SERVER"
+        text = "© Depth Of School"
         font_size = max(20, img.width // 20)
 
         try:
