@@ -117,7 +117,7 @@ class ReviewView(discord.ui.View):
                     if self.extra_text:
                         embed_channel.description = self.extra_text
                     embed_channel.set_image(url="attachment://image.jpg")
-                    embed_channel.set_footer(text="© PEAK SERVER")
+                    embed_channel.set_footer(text="© Depth Of School")
                     await new_channel.send(file=file, embed=embed_channel)
                     print(f"✅ تم إرسال الصورة في الروم")
                     del image_store[self.user_id]
@@ -273,7 +273,7 @@ async def on_message(message):
                         embed.add_field(name="اسم الروم", value=room_name, inline=False)
                         if extra_text:
                             embed.add_field(name="الكلام", value=extra_text, inline=False)
-                        embed.set_footer(text="© PEAK SERVER")
+                        embed.set_footer(text="© Depth Of School")
 
                         view = ReviewView(user_id, room_name, extra_text)
 
